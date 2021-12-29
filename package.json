@@ -1,0 +1,21 @@
+{
+  "name": "shiniest-ui",
+  "version": "0.0.1",
+  "description": "A Component Library for Vue.js(2.x).",
+  "main": "index.js",
+  "scripts": {
+    "test": "yarn test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.shiniest.cn/root/shiniest-ui.git"
+  },
+  "keywords": [
+    "shiniest",
+    "ui",
+    "component",
+    "vue"
+  ],
+  "author": "XingYu Xiao <https://www.shiniest.cn/>",
+  "license": "MIT"
+}
