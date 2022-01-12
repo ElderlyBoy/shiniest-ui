@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  import './main.scss'
   export default {
     name: 'ShHello'
   }
