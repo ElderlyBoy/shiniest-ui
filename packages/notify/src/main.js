@@ -22,7 +22,6 @@ const typeList = ['success', 'info', 'warning', 'danger']
 /* 挂载子方法 */
 typeList.forEach(type => {
   Object.defineProperty(reander, type, {
-    writable: false,
     get(){
       return function(message = ''){
         reander({type, message})
@@ -30,3 +29,4 @@ typeList.forEach(type => {
     }
   })
 })
+export default reander

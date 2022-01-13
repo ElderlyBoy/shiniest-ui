@@ -27,6 +27,14 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  externals: {
+    vue: {
+      root: 'Vue',
+      commonjs: 'vue',
+      commonjs2: 'vue',
+      amd: 'vue'
+    }
+  },
   plugins: [
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
@@ -44,6 +52,13 @@ module.exports = {
     }, {
       test: /\.scss$/,
       use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+    },{
+      test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
+      loader: 'url-loader',
+      options: {
+        limit: 1,
+        name: 'static/[name].[ext]'
+      }
     }]
   }
 };

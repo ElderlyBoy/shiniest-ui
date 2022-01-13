@@ -13,7 +13,8 @@
     name: 'notify',
     data(){
       return {
-        timmer: null
+        timmer: null,
+        title: ''
       }
     },
     mounted() {

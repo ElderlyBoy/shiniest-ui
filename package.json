@@ -4,12 +4,13 @@
   "description": "A Component Library for Vue.js(2.x).",
   "main": "src/index.js",
   "scripts": {
-    "serve": "npm run clean && npm run build:entry && vue-cli-service serve",
+    "serve": "npm run clean && npm run build:entry && npm run build:icon && vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "build:entry": "node ./build/build.entry.js",
-    "build:lib": "npm run clean && npm run build:entry && webpack --config build/build.lib.js",
+    "build:lib": "npm run clean && npm run build:entry && npm run build:icon && webpack --config build/build.lib.js",
+    "build:icon": "node ./build/build.iconfont.js",
     "clean": "node ./build/build.clean.js"
   },
   "repository": {
@@ -39,6 +40,7 @@
     "progress-bar-webpack-plugin": "^2.1.0",
     "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
+    "svgtofont": "^3.14.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-template-compiler": "^2.6.11",
