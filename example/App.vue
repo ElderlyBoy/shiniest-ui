@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-link to="/home">home</router-link>
+    <br>
+    <router-link to="/iconfont">iconfont</router-link>
+    <router-view>iconfont</router-view>
   </div>
 </template>
 

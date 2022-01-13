@@ -6,7 +6,11 @@ Vue.use(VueRouter)
 const routes = [{
   path: '/',
   name: 'Home',
-  component: () => import( /* webpackChunkName: "home" */ '../views/Home.vue')
+  component: () => import( /* webpackChunkName: "home" */ '../views/home.vue')
+},{
+  path: '/iconfont',
+  name: 'Iconfont',
+  component: () => import( /* webpackChunkName: "iconfont" */ '../views/iconfont.vue')
 }]
 
 const router = new VueRouter({
