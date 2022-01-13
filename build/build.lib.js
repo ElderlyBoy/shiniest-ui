@@ -60,6 +60,14 @@ module.exports = {
         name: 'static/[name].[ext]'
       }
     }]
+  },
+  stats: {
+    all: false,
+    source: false,
+    timings: true,
+    version: true,
+    warnings: true,
+    assets: true
   }
 };
 //注意：
