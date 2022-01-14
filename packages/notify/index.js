@@ -2,11 +2,7 @@ import Notify from './src/main.js';
 
 /* istanbul ignore next */
 Notify.install = function(Vue) {
-  Vue.prototype["$" + Notify.name] = Notify
+  Vue.prototype.$notify = Notify
 }
 
-export default {
-  name: '$notify',
-  type: 'prototype',
-  handler: Notify
-}
+export default Notify

@@ -1,5 +1,4 @@
 /* auto build by build/build.entry.js */
-import "./../packages/stylesheet/index.scss";
 import "./../packages/stylesheet/fonts/sh-icon.scss";
 import Button from "./../packages/button/index.js";
 import Hello from "./../packages/hello/index.js";
@@ -12,11 +11,8 @@ const packages = [
 ];
 
 const install = Vue => {
-  packages.forEach(component => {
-    if(!component.type) return Vue.component(component.name, component)
-    if(component.type === 'prototype') return Vue.prototype[component.name] = component.handler
-    if(component.type === 'directive') return Vue.directive(component.name, component.handler)
-    return
+  packages.forEach(pkg => {
+    Vue.use(pkg)
   });
 };
 
