@@ -11,7 +11,8 @@
     "build:entry": "node ./build/build.entry.js",
     "build:lib": "npm run clean && npm run build:entry && npm run build:icon && webpack --config build/build.lib.js",
     "build:icon": "node ./build/build.iconfont.js",
-    "clean": "node ./build/build.clean.js"
+    "clean": "node ./build/build.clean.js",
+    "newpkg": "node ./build/build.newpkg.js"
   },
   "repository": {
     "type": "git",
