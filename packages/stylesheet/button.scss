@@ -1,18 +1,7 @@
+@import 'theme.scss';
 .sh-button {
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  font-size: var(--font-size-p);
-  border-radius: 4px;
-  height: var(--height-medium);
+  height: $height-small;
   padding: 0 10px;
-  cursor: pointer;
-  background: var(--primary-color);
-  transition: all .3s;
-  &__round {
-    border-radius: var(--height-medium);
-  }
-  &:hover {
-    box-shadow: 0 0 10px #ddd;
-    filter: brightness(0.95);
-  }
+  border: 1px solid $border-color-base;
+  
 }
