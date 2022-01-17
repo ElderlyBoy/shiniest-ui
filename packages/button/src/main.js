@@ -4,9 +4,9 @@ export default {
   props: {
     type: { type: String, default: 'default' },
     disabled: { type: Boolean, default: false },
-    plan: { type: Boolean, default: false },
+    plain: { type: Boolean, default: false },
     round: { type: Boolean, default: false },
-    size: { type: String, default: 'medium' }
+    size: { type: String, default: 'small' }
   },
   methods: {
     click(){
@@ -20,7 +20,7 @@ export default {
         `sh-button__${this.type}`,
         `sh-button__${this.size}`,
         {
-          'sh-button__plan': this.plan,
+          'sh-button__plain': this.plain,
           'sh-button__disabled': this.disabled,
           'sh-button__round': this.round
         }

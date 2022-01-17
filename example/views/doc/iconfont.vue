@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import iconfontList from '../../iconfont.js'
+  import iconfontList from '../../../iconfont.js'
   export default{
     data(){
       return {

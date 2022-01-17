@@ -1,12 +1,10 @@
 /* auto build by build/build.entry.js */
 import "./../packages/stylesheet/fonts/sh-icon.scss";
 import Button from "./../packages/button/index.js";
-import Hello from "./../packages/hello/index.js";
 import Notify from "./../packages/notify/index.js";
 
 const packages = [
   Button,
-  Hello,
   Notify
 ];
 

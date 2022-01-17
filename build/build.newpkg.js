@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const [pkgType, pkgName] = process.argv.slice(2).map(i => i.toLowerCase());
+const [pkgType, pkgName] = process.argv.slice(2)
 
 if (!pkgType || !pkgName) {
   console.log('\x1B[31m%s\x1B[0m', 'Error: 参数错误 创建失败');
@@ -13,21 +13,7 @@ const templateList = [{
   type: 'component',
   label: 'Vue全局组件',
   process: () => {
-    let isExists = fs.existsSync(path.resolve(__dirname, `../packages/${pkgName}`));
-    
-    if(isExists) {
-      console.log('\x1B[31m%s\x1B[0m', `Error: 已存在 ${pkgName} 文件夹 无法继续创建`);
-      return
-    } 
-    
-    fs.mkdirSync(path.resolve(__dirname, `../packages/${pkgName}`));
-    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName} 文件夹完成`);
-    
-    fs.mkdirSync(path.resolve(__dirname, `../packages/${pkgName}/src`));
-    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/src 文件夹完成`);
-    
     const componentName = pkgName.replace(/\w/, (val) => val.toUpperCase());
-    
     const indexFileData = `import ${componentName} from \'./src/main.vue\';\n\n${componentName}.install = Vue => {\n  Vue.component(${componentName}.name, ${componentName});\n}\n\nexport default ${componentName};`;
     fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/index.js`), indexFileData, 'utf-8');
     console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/index.js 文件完成`);
@@ -46,17 +32,42 @@ const templateList = [{
   label: 'Vue全局混入'
 }, {
   type: 'prototype',
-  label: 'Vue实例属性'
+  label: 'Vue实例属性',
+  process: () => {
+    const upperName = pkgName.replace(/\w/, val => val.toUpperCase());
+    const protoName = `$${pkgName}`;
+    const indexFileData = `import ${upperName} from './src/main.js';\n\n${upperName}.install = function(Vue) {\n  Vue.prototype.${protoName} = ${upperName};\n}\n\nexport default ${upperName}`;
+    fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/index.js`), indexFileData, 'utf-8');
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/index.js 文件完成`);
+    
+    const mainjsFileData = `import Vue from \'vue\';\n\nconst example = '';\n\nexport default example`;
+    fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/src/main.js`), mainjsFileData, 'utf-8');
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/src/main.js 文件完成`);
+    
+    const mainvueFileData = `<template>\n  <div></div>\n</template>\n\n<script>\n  export default {\n    name: \'${upperName}\'\n  }\n</script>`;
+    fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/src/main.vue`), mainvueFileData, 'utf-8');
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/src/main.vue 文件完成`);
+    
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${target.label} ${upperName} 完成`);
+  }
 }];
 
 const target = templateList.find(i => i.type === pkgType)
-
 if(!target) {
   console.log('\x1B[31m%s\x1B[0m', 'Error: 类型参数错误');
   return
 }
-
-target.process()
-
-console.log(`\x1B[32mCerating Type:\x1B[0m ${pkgType} (${target.label})\n\x1B[32mTarget Name:\x1B[0m ${pkgName}`)
+const isExists = fs.existsSync(path.resolve(__dirname, `../packages/${pkgName}`));
+if(isExists) {
+  console.log('\x1B[31m%s\x1B[0m', `Error: 已存在 ${pkgName} 文件夹 无法继续创建`);
+} else {
+  fs.mkdirSync(path.resolve(__dirname, `../packages/${pkgName}`));
+  console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName} 文件夹完成`);
+  
+  fs.mkdirSync(path.resolve(__dirname, `../packages/${pkgName}/src`));
+  console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/src 文件夹完成`);
+  
+  target.process();
+  console.log(`\x1B[32mCerating Type:\x1B[0m ${pkgType} (${target.label})\n\x1B[32mTarget Name:\x1B[0m ${pkgName}`)
+}
 

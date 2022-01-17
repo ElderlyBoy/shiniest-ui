@@ -1,46 +1,43 @@
 <template>
-  <div @mouseenter="handleMouseenter" @mouseout="handleMouseout" class="sh-notify">
-    <h2>
-      <span>ICON</span>
-      <span>{{title}}</span>
-    </h2>
-    <p>{{message}}</p>
+  <div class="sh-notify" @mouseenter="mouseenter" @mouseleave="mouseleave">
+    {{type}}{{message}}{{duration}}
   </div>
 </template>
 
 <script>
+  import '../../stylesheet/notify.scss';
   export default {
-    name: 'notify',
+    name: 'Notify',
     data(){
       return {
+        type: 'success',
+        title: '',
         timmer: null,
-        title: ''
+        message: '',
+        duration: 3000,
       }
     },
     mounted() {
-      this.init();
+      this.createTimmer()
     },
     methods: {
-      init(){
-        this.timmer = setTimeout(() => {
-          this.destroy();
-        }, this.duration);
-      },
-      handleMouseenter(){
-        clearTimeout(this.timmer)
-        this.timmer = null
-      },
-      handleMouseout(){
-        this.init()
-      },
-      destroy(){
+      remove(){
         this.$el.remove();
-        clearTimeout(this.timmer)
+        this.clearTimmer();
         this.$destroy();
-      }
+      },
+      createTimmer(){
+        this.timmer = setTimeout(this.remove, this.duration);
+      },
+      clearTimmer(){
+        clearTimeout(this.timmer);
+      },
+      mouseenter(){
+        this.clearTimmer();
+      },
+      mouseleave(){
+        this.createTimmer();
+      },
     }
   }
 </script>
-
-<style>
-</style>

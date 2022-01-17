@@ -1,0 +1,25 @@
+@import 'theme.scss';
+@keyframes sh-notify-enter {
+  from{
+    right: -300px;
+  }
+  to{
+    right: 0;
+  }
+}
+@keyframes sh-notify-out {
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+.sh-notify {
+  position: fixed;
+  z-index: 4000;
+  animation: 'sh-notify-enter' .3s forwards;
+  &__before-out {
+    animation: 'sh-notify-out' .3s forwards;
+  }
+}

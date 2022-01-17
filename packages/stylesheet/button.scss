@@ -1,7 +1,136 @@
 @import 'theme.scss';
 .sh-button {
-  height: $height-small;
-  padding: 0 10px;
+  outline: none;
+  cursor: pointer;
   border: 1px solid $border-color-base;
-  
+  background: #fff;
+  transition: all .2s;
+  border-radius: $radius-md;
+  color: #fff;
+  font-size: $h6;
+  & + .sh-button {
+    margin-left: 10px;
+  }
+  &__default {
+    color: $text-color-base;
+    &:hover, &:focus {
+      border-color: $pricor-plain-border;
+      background: $pricor-plain;
+      color: $pricor !important;
+    }
+    &:active {
+      border-color: $pricor-act;
+      color: $pricor-act;
+    }
+    &.sh-button__plain {
+      background: #fff !important;
+    }
+  }
+  &__primary {
+    background: $pricor;
+    border-color: $pricor;
+    &.sh-button__plain {
+      background: $pricor-plain;
+      color: $pricor;
+    }
+    &:hover, &:focus {
+      border-color: $pricor-hov;
+      background: $pricor-hov;
+    }
+    &:active {
+      border-color: $pricor-act;
+      background: $pricor-act;
+    }
+  }
+  &__success {
+    background: $succor;
+    border-color: $succor;
+    &.sh-button__plain {
+      background: $succor-plain;
+      color: $succor;
+    }
+    &:hover, &:focus {
+      border-color: $succor-hov;
+      background: $succor-hov;
+    }
+    &:active {
+      border-color: $succor-act;
+      background: $succor-act;
+    }
+  }
+  &__warning {
+    background: $warcor;
+    border-color: $warcor;
+    &.sh-button__plain {
+      background: $warcor-plain;
+      color: $warcor;
+    }
+    &:hover, &:focus {
+      border-color: $warcor-hov;
+      background: $warcor-hov;
+    }
+    &:active {
+      border-color: $warcor-act;
+      background: $warcor-act;
+    }
+  }
+  &__info {
+    background: $infcor;
+    border-color: $infcor;
+    &.sh-button__plain {
+      background: $infcor-plain;
+      color: $infcor;
+    }
+    &:hover, &:focus {
+      border-color: $infcor-hov;
+      background: $infcor-hov;
+    }
+    &:active {
+      border-color: $infcor-act;
+      background: $infcor-act;
+    }
+  }
+  &__danger {
+    background: $dancor;
+    border-color: $dancor;
+    &.sh-button__plain {
+      background: $dancor-plain;
+      color: $dancor;
+    }
+    &:hover, &:focus {
+      border-color: $dancor-hov;
+      background: $dancor-hov;
+    }
+    &:active {
+      border-color: $dancor-act;
+      background: $dancor-act;
+    }
+  }
+  &__plain {
+    &:hover, &:focus {
+      color: #fff;
+    }
+  }
+  &__round {
+    border-radius: 100px;
+  }
+  &__mini {
+    height: $height-mini;
+    padding: 0 8px;
+    font-size: $h7;
+  }
+  &__small {
+    height: $height-small;
+    padding: 0 10px;
+  }
+  &__medium {
+    height: $height-medium;
+    padding: 0 12px;
+    font-size: $h5;
+  }
+  &__large {
+    height: $height-large;
+    padding: 0 15px;
+    font-size: $h4;
+  }
 }
