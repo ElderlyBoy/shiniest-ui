@@ -24,3 +24,5 @@ pnpm-debug.log*
 *.sw?
 package-lock.json
 packages/stylesheet/fonts/
+iconfont.js
+src/index.js
