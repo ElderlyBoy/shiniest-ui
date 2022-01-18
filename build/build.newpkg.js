@@ -26,10 +26,25 @@ const templateList = [{
   }
 }, {
   type: 'directive',
-  label: 'Vue全局指令'
+  label: 'Vue全局指令',
+  process: () => {
+    const upperName = pkgName.replace(/\w/, val => val.toUpperCase());
+    const indexFileData = `import ${upperName} from './src/main.js';\n\n${upperName}.install = function(Vue){\n  Vue.directive(${upperName}.name,  ${upperName});\n}\n\nexport default ${upperName}`;
+    fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/index.js`), indexFileData, 'utf-8');
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/index.js 文件完成`);
+    
+    const mainjsFileData = `class ${upperName} {\n  constructor(args) {\n    this.name = \'${pkgName}\';\n  }\n  bind(el, binding, vnode){}\n  inserted(el, binding, vnode){}\n  update(el, binding, vnode){}\n  componentUpdated(el, binding, vnode){}\n  unbind(el, binding, vnode){}\n}\n\nexport default new ${upperName}()`;
+    fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/src/main.js`), mainjsFileData, 'utf-8');
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/src/main.js 文件完成`);
+    
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${target.label} v-${pkgName} 完成`);
+  }
 }, {
   type: 'mixin',
-  label: 'Vue全局混入'
+  label: 'Vue全局混入',
+  process: () => {
+    return
+  }
 }, {
   type: 'prototype',
   label: 'Vue实例属性',
