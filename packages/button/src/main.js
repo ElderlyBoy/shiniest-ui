@@ -29,7 +29,8 @@ export default {
         click: this.click
       },
       attrs: {
-        type: 'button'
+        type: 'button',
+        disabled: this.disabled
       }
     }, this.$slots.default)
   }
