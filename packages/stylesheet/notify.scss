@@ -4,22 +4,75 @@
     right: -300px;
   }
   to{
-    right: 0;
+    right: 10px;
   }
 }
 @keyframes sh-notify-out {
   from{
+    right: 10px;
     opacity: 1;
   }
   to{
+    right: 10px;
     opacity: 0;
   }
 }
 .sh-notify {
   position: fixed;
+  width: 230px;
+  border-radius: $radius-md;
   z-index: 4000;
+  top: 100px;
   animation: 'sh-notify-enter' .3s forwards;
+  background: $white;
+  border: 1px solid $border-color-base;
+  padding: 10px;
+  font-size: $p;
+  color: $text-color-light;
+  box-shadow: $default-box-shadow;
   &__before-out {
     animation: 'sh-notify-out' .3s forwards;
+  }
+  .sh-notify__title {
+    margin: 0;
+    font-size: $h5;
+    color: $text-color-base;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    & > span {
+      flex-grow: 2;
+      font-weight: $fwb;
+    }
+    i:nth-of-type(1){
+      margin-right: 5px;
+    }
+    .sh-icon-success-fill {
+      color: $succor;
+    }
+    .sh-icon-warning-fill {
+      color: $warcor;
+    }
+    .sh-icon-info-fill {
+      color: $infcor;
+    }
+    .sh-icon-error-fill {
+      color: $dancor;
+    }
+    .sh-icon-error {
+      font-size: $h7;
+      align-self: flex-start;
+      color: $text-color-xlight;
+      cursor: pointer;
+      transition: all .2s;
+      margin-right: 0 !important;
+      &:hover {
+        color: $dancor;
+      }
+    }
+  }
+  & > .sh-notify__content {
+    margin: 0;
+    padding-top: 5px;
   }
 }

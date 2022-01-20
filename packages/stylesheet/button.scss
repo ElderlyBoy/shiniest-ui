@@ -1,12 +1,13 @@
 @import 'theme.scss';
+$disaled-weight: 50%;
 .sh-button {
   outline: none;
   cursor: pointer;
   border: 1px solid $border-color-base;
-  background: #fff;
+  background: $white;
   transition: all .2s;
   border-radius: $radius-md;
-  color: #fff;
+  color: $white;
   font-size: $h6;
   & + .sh-button {
     margin-left: 10px;
@@ -23,7 +24,13 @@
       color: $pricor-act;
     }
     &.sh-button__plain {
-      background: #fff !important;
+      background: $white !important;
+    }
+    &.sh-button__disabled {
+      cursor: not-allowed;
+      background: $white;
+      border-color: mix($white, $border-color-base, $disaled-weight);
+      color: mix($white, $text-color-base, $disaled-weight) !important;
     }
   }
   &__primary {
@@ -32,6 +39,10 @@
     &.sh-button__plain {
       background: $pricor-plain;
       color: $pricor;
+      &.sh-button__disabled {
+        background: mix($white, $pricor-plain, $disaled-weight);
+        color: mix($white, $pricor, $disaled-weight);
+      }
     }
     &:hover, &:focus {
       border-color: $pricor-hov;
@@ -41,6 +52,12 @@
       border-color: $pricor-act;
       background: $pricor-act;
     }
+    &.sh-button__disabled {
+      cursor: not-allowed;
+      background: mix($white, $pricor, $disaled-weight);
+      border-color: mix($white, $pricor, $disaled-weight);
+      color: $white;
+    }
   }
   &__success {
     background: $succor;
@@ -48,6 +65,10 @@
     &.sh-button__plain {
       background: $succor-plain;
       color: $succor;
+      &.sh-button__disabled {
+        background: mix($white, $succor-plain, $disaled-weight);
+        color: mix($white, $succor, $disaled-weight);
+      }
     }
     &:hover, &:focus {
       border-color: $succor-hov;
@@ -57,6 +78,12 @@
       border-color: $succor-act;
       background: $succor-act;
     }
+    &.sh-button__disabled {
+      cursor: not-allowed;
+      background: mix($white, $succor, $disaled-weight);
+      border-color: mix($white, $succor, $disaled-weight);
+      color: $white;
+    }
   }
   &__warning {
     background: $warcor;
@@ -64,6 +91,10 @@
     &.sh-button__plain {
       background: $warcor-plain;
       color: $warcor;
+      &.sh-button__disabled {
+        background: mix($white, $warcor-plain, $disaled-weight);
+        color: mix($white, $warcor, $disaled-weight);
+      }
     }
     &:hover, &:focus {
       border-color: $warcor-hov;
@@ -73,6 +104,12 @@
       border-color: $warcor-act;
       background: $warcor-act;
     }
+    &.sh-button__disabled {
+      cursor: not-allowed;
+      background: mix($white, $warcor, $disaled-weight);
+      border-color: mix($white, $warcor, $disaled-weight);
+      color: $white;
+    }
   }
   &__info {
     background: $infcor;
@@ -80,6 +117,10 @@
     &.sh-button__plain {
       background: $infcor-plain;
       color: $infcor;
+      &.sh-button__disabled {
+        background: mix($white, $infcor-plain, $disaled-weight);
+        color: mix($white, $infcor, $disaled-weight);
+      }
     }
     &:hover, &:focus {
       border-color: $infcor-hov;
@@ -89,6 +130,12 @@
       border-color: $infcor-act;
       background: $infcor-act;
     }
+    &.sh-button__disabled {
+      cursor: not-allowed;
+      background: mix($white, $infcor, $disaled-weight);
+      border-color: mix($white, $infcor, $disaled-weight);
+      color: $white;
+    }
   }
   &__danger {
     background: $dancor;
@@ -96,6 +143,10 @@
     &.sh-button__plain {
       background: $dancor-plain;
       color: $dancor;
+      &.sh-button__disabled {
+        background: mix($white, $dancor-plain, $disaled-weight);
+        color: mix($white, $dancor, $disaled-weight);
+      }
     }
     &:hover, &:focus {
       border-color: $dancor-hov;
@@ -105,10 +156,16 @@
       border-color: $dancor-act;
       background: $dancor-act;
     }
+    &.sh-button__disabled {
+      cursor: not-allowed;
+      background: mix($white, $dancor, $disaled-weight);
+      border-color: mix($white, $dancor, $disaled-weight);
+      color: $white;
+    }
   }
   &__plain {
     &:hover, &:focus {
-      color: #fff;
+      color: $white;
     }
   }
   &__round {
