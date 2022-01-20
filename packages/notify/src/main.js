@@ -13,9 +13,7 @@ function notifyReander(obj = {}){
 
 const typeList = ['success', 'warning', 'info', 'error']
 typeList.forEach(type => {
-  Object.defineProperty(notifyReander, type, {
-    get: params => notifyReander({type, ...params})
-  })
+  notifyReander[type] = message => notifyReander({type, message})
 })
 
 export default notifyReander
