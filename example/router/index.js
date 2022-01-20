@@ -3,6 +3,17 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+function makeRouter(name, title){
+  return {
+    meta: {
+      title
+    },
+    path: name,
+    name: name.replace(/\w/, val => val.toUpperCase()),
+    component: () => import(`../views/doc/${name}.vue`)
+  }
+}
+
 const routes = [{
   path: '/',
   name: 'Home',
@@ -10,19 +21,12 @@ const routes = [{
 },{
   path:'/doc',
   component: () => import( /* webpackChunkName: "home" */ '../views/doc/index.vue'),
-  children: [{
-    path: 'button',
-    name: 'Button',
-    component: () => import( /* webpackChunkName: "button" */ '../views/doc/button.vue')
-  },{
-    path: 'iconfont',
-    name: 'Iconfont',
-    component: () => import( /* webpackChunkName: "iconfont" */ '../views/doc/iconfont.vue')
-  },{
-    path: 'notify',
-    name: 'Notify',
-    component: () => import( /* webpackChunkName: "notify" */ '../views/doc/notify.vue')
-  }]
+  redirect: '/doc/button',
+  children: [
+    makeRouter('button', '按钮'),
+    makeRouter('iconfont', '图标'),
+    makeRouter('notify', '通知')
+  ]
 }]
 
 const router = new VueRouter({
