@@ -25,7 +25,8 @@ const routes = [{
   children: [
     makeRouter('button', '按钮'),
     makeRouter('iconfont', '图标'),
-    makeRouter('notify', '通知')
+    makeRouter('notify', '通知'),
+    makeRouter('link', '链接')
   ]
 }]
 
