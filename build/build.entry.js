@@ -3,7 +3,7 @@ const path = require('path');
 const { version } = require('./../package.json');
 
 const componentList = fs.readdirSync(path.resolve(__dirname, '../packages')).filter(i => i !== 'stylesheet').map(i => i.replace(/\w/, (val) => val.toUpperCase()));
-const importList = componentList.map(i => `import ${i} from \"./../packages/${i.toLowerCase()}/index.js\";`).join('\n');
+const importList = componentList.map(i => `import ${i} from \"./../packages/${i.replace(/\w/, val => val.toLowerCase())}/index.js\";`).join('\n');
 
 const makeTemplate = function(){
   return `/* auto build by build/build.entry.js */
