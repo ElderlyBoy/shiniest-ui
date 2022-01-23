@@ -8,13 +8,18 @@ const importList = componentList.map(i => `import ${i} from \"./../packages/${i.
 const makeTemplate = function(){
   return `/* auto build by build/build.entry.js */
 import "./../packages/stylesheet/fonts/sh-icon.scss";
+
 ${importList}
 
 const packages = [
   ${componentList.join(',\n  ')}
 ];
 
-const install = Vue => {
+const install = (Vue, config = {}) => {
+  Vue.prototype.$SHINIEST = {};
+  Object.keys(config).forEach(key => {
+    Vue.prototype.$SHINIEST[key] = config[key];
+  });
   packages.forEach(pkg => {
     Vue.use(pkg)
   });

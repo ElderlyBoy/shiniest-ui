@@ -5,7 +5,10 @@ import store from './store'
 import ShiniestUI from './../src/index.js'
 
 Vue.config.productionTip = false
-Vue.use(ShiniestUI)
+Vue.use(ShiniestUI, {
+  size: 'small',
+  lang: 'en-US'
+})
 
 new Vue({
   router,

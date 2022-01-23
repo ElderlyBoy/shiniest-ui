@@ -6,11 +6,21 @@ export default {
     disabled: { type: Boolean, default: false },
     plain: { type: Boolean, default: false },
     round: { type: Boolean, default: false },
-    size: { type: String, default: 'small' }
+    size: { type: String, default: '' }
+  },
+  inject: {
+    shForm: {
+      default: () => ({})
+    }
+  },
+  computed: {
+    buttonSize(){
+      return this.size || this.$SHINIEST.size || this.shForm.size
+    }
   },
   methods: {
-    click(){
-      this.$emit('click', event)
+    click(e){
+      this.$emit('click', e)
     }
   },
   render(h) {
@@ -18,7 +28,7 @@ export default {
       'class': [
         'sh-button',
         `sh-button__${this.type}`,
-        `sh-button__${this.size}`,
+        `sh-button__${this.buttonSize}`,
         {
           'sh-button__plain': this.plain,
           'sh-button__disabled': this.disabled,
