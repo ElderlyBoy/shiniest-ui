@@ -40,12 +40,6 @@ const templateList = [{
     console.log(`\x1B[32mSuccess\x1B[0m 创建 ${target.label} v-${pkgName} 完成`);
   }
 }, {
-  type: 'mixin',
-  label: 'Vue全局混入',
-  process: () => {
-    return
-  }
-}, {
   type: 'prototype',
   label: 'Vue实例属性',
   process: () => {
