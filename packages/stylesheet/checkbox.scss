@@ -1,0 +1,63 @@
+@import 'theme.scss';
+.sh-checkbox {
+  font-size: $p;
+  outline: none;
+  cursor: pointer;
+  & + & {
+    margin-left: 10px;
+  }
+  &__disabled {
+    cursor: not-allowed;
+    span {
+      color: $text-color-xlight !important;
+      border-color: $text-color-xlight !important;
+    }
+    .sh-checkbox__inner {
+      background: $border-color-light !important;
+      .sh-icon-success {
+        color: $text-color-lighter;
+      }
+    }
+  }
+  span {
+    vertical-align: middle;
+    color: $text-color-lighter;
+    box-sizing: border-box;
+    transition: all .2s;
+    display: inline-block;
+  }
+  &:hover > span, &:focus > span {
+    border-color: $pricor;
+    color: $pricor;
+  }
+  input {
+    display: none;
+  }
+  input + &__inner {
+    height: 14px;
+    width: 14px;
+    display: inline-block;
+    border: 1px solid $border-color-base;
+    border-radius: $radius-sm;
+    margin-right: 5px;
+    background: $white;
+    .sh-icon-success {
+      display: block;
+      transform: scale(0);
+      font-size: $p;
+      vertical-align: top;
+      color: $white;
+      transition: all .4s;
+    }
+  }
+  input:checked + &__inner {
+    border-color: $pricor;
+    background: $pricor;
+    & + span {
+      color: $pricor;
+    }
+    .sh-icon-success {
+      transform: scale(.7);
+    }
+  }
+}

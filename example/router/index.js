@@ -27,7 +27,8 @@ const routes = [{
     makeRouter('iconfont', '图标'),
     makeRouter('notify', '通知'),
     makeRouter('link', '链接'),
-    makeRouter('tag', '标签')
+    makeRouter('tag', '标签'),
+    makeRouter('checkbox', '复选框')
   ]
 }]
 
