@@ -1,0 +1,26 @@
+<template>
+  <span :class="['sh-tag', `sh-tag__${type}`, `sh-tag__${tagSize}`]">
+    <slot></slot>
+  </span>
+</template>
+
+<script>
+  import '../../stylesheet/tag.scss';
+  export default {
+    name: 'ShTag',
+    inject: {
+      shForm: {
+        default: () => ({})
+      }
+    },
+    props: {
+      type: { type: String, default: 'primary' },
+      size: { type: String, default: '' }
+    },
+    computed: {
+      tagSize(){
+        return this.size || this.$SHINIEST.size || this.shForm.size
+      }
+    }
+  }
+</script>

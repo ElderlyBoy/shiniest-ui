@@ -1,0 +1,43 @@
+@import 'theme.scss';
+.sh-tag {
+  font-size: $h7;
+  border: 1px solid;
+  border-radius: $radius-md;
+  &.sh-tag__mini {
+    padding: 1px 4px;
+  }
+  &.sh-tag__small {
+    padding: 3px 4px;
+  }
+  &.sh-tag__medium {
+    padding: 5px 6px;
+  }
+  &.sh-tag__large {
+    padding: 7px 8px;
+  }
+  &.sh-tag__primary {
+    border-color: $pricor-plain-border;
+    color: $pricor;
+    background: $pricor-plain;
+  }
+  &.sh-tag__success {
+    border-color: $succor-plain-border;
+    color: $succor;
+    background: $succor-plain;
+  }
+  &.sh-tag__warning {
+    border-color: $warcor-plain-border;
+    color: $warcor;
+    background: $warcor-plain;
+  }
+  &.sh-tag__danger {
+    border-color: $dancor-plain-border;
+    color: $dancor;
+    background: $dancor-plain;
+  }
+  &.sh-tag__info {
+    border-color: $infcor-plain-border;
+    color: $infcor;
+    background: $infcor-plain;
+  }
+}
