@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "serve": "npm run clean && npm run build:entry && npm run build:icon && vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "npm run clean && npm run build:entry && npm run build:icon && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "build:entry": "node ./build/build.entry.js",
