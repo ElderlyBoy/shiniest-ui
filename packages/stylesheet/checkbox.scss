@@ -14,7 +14,7 @@
     }
     .sh-checkbox__inner {
       background: $border-color-light !important;
-      .sh-icon-success {
+      .sh-icon-success, .sh-icon-reduce {
         color: $text-color-lighter;
       }
     }
@@ -41,7 +41,10 @@
     border-radius: $radius-sm;
     margin-right: 5px;
     background: $white;
-    .sh-icon-success {
+    position: relative;
+    .sh-icon-success, .sh-icon-reduce {
+      position: absolute;
+      top: -1px;
       display: block;
       transform: scale(0);
       font-size: $p;
@@ -49,15 +52,18 @@
       color: $white;
       transition: all .4s;
     }
+    .sh-icon-reduce {
+      left: -1px;
+    }
   }
-  input:checked + &__inner {
+  &.sh-checkbox__indeterminate .sh-checkbox__inner, input:checked + &__inner {
     border-color: $pricor;
     background: $pricor;
     & + span {
       color: $pricor;
     }
-    .sh-icon-success {
-      transform: scale(.7);
+    .sh-icon-success, .sh-icon-reduce {
+      transform: scale(.6);
     }
   }
 }

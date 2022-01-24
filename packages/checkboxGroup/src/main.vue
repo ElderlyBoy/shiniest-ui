@@ -20,16 +20,14 @@
         shCheckboxGroup: this
       }
     },
-    watch: {
-      bindValue: {
-        deep: true,
-        handler(val){
-          this.$emit('change', val)
+    methods: {
+      checkboxChange(value, state) {
+        if(state) {
+          this.$emit('change', [...this.bindValue, value])
+        } else {
+          this.$emit('change', this.bindValue.filter(i => i !== value))
         }
       }
-    },
-    methods: {
-      
     }
   }
 </script>

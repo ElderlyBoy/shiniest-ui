@@ -1,8 +1,9 @@
 <template>
-  <label tabindex="0" @keydown.space="checkboxValue = !checkboxValue" :class="['sh-checkbox', {'sh-checkbox__disabled': checkboxDisabled}]">
-    <input v-model="checkboxValue" :disabled="checkboxDisabled" type="checkbox">
+  <label @keyup.space="e => e.target.click()" tabindex="0" :class="['sh-checkbox', {'sh-checkbox__disabled': checkboxDisabled, 'sh-checkbox__indeterminate': indeterminate}]">
+    <input :disabled="checkboxDisabled" @change="e => change(e.target.checked)" :checked="isCheckboxChecked" type="checkbox">
     <span role="checkbox" class="sh-checkbox__inner">
-      <i class="sh-icon-success"></i>
+      <i v-if="indeterminate" class="sh-icon-reduce"></i>
+      <i v-else class="sh-icon-success"></i>
     </span>
     <span>
       <slot>{{label}}</slot>
@@ -16,53 +17,41 @@
     name: 'ShCheckbox',
     model: {
       event: 'change',
-      prop: 'isCheck'
+      prop: 'isChecked'
     },
     inject: {
       shForm: {
-        default: () => ({})
+        default: ''
       },
       shCheckboxGroup: {
-        default: () => ({})
-      }
-    },
-    data(){
-      return {
-        checkboxValue: false
+        default: ''
       }
     },
     props: {
       label: { type: String, default: '' },
-      isCheck: { type: Boolean },
+      isChecked: { type: Boolean },
       disabled: { type: Boolean, default: false },
       checked: { type: Boolean, default: null },
-      value: { type: [String, Number, Boolean], default: null }
+      value: { type: [String, Number, Boolean], default: null },
+      indeterminate: { type: Boolean, default: null }
     },
     computed: {
       checkboxDisabled(){
-        return this.disabled || this.shCheckboxGroup.disabled || this.shForm.disabled
+        return this.disabled || (this.shCheckboxGroup || {}).disabled || this.shForm.disabled
+      },
+      isCheckboxChecked(){
+        return this.shCheckboxGroup?this.shCheckboxGroup.bindValue.includes(this.value):this.isChecked
       }
     },
     created() {
-      this.$on('change', val => {
-        if(this.shCheckboxGroup.bindValue){
-          if(val) {
-            this.shCheckboxGroup.$emit('change', [...this.shCheckboxGroup.bindValue, this.value])
-          } else {
-            this.shCheckboxGroup.$emit('change', this.shCheckboxGroup.bindValue.filter(item => item !== this.value))
-          }
-        }
-      })
-      if(typeof this.checked === 'boolean') {
-        this.checkboxValue = this.checked
-      }
-      if(this.shCheckboxGroup.bindValue && this.shCheckboxGroup.bindValue.indexOf(this.value) !== -1) {
-        this.checkboxValue = true
-      }
+      if(this.checked !== null) this.$emit('change', this.checked)
     },
-    watch: {
-      checkboxValue(val) {
+    methods: {
+      change(val){
         this.$emit('change', val)
+        if(this.shCheckboxGroup){
+          this.shCheckboxGroup.checkboxChange(this.value, val)
+        }
       }
     }
   }
