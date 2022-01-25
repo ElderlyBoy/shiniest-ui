@@ -40,7 +40,7 @@
       },
       checkGroup2Change(val) {
         console.log(val)
-        this.canCheckAll = val.length === 0
+        this.canCheckAll = val.length === 5
       }
     }
   }
