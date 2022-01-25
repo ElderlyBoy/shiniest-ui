@@ -3,6 +3,7 @@
   font-size: $p;
   outline: none;
   cursor: pointer;
+  display: inline-block;
   & + & {
     margin-left: 10px;
   }

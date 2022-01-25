@@ -3,6 +3,7 @@
   font-size: $p;
   outline: none;
   cursor: pointer;
+  display: inline-block;
   &:hover, &:focus {
     .sh-radio__inner {
       border-color: $pricor;
