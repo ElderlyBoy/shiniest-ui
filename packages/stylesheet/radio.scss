@@ -1,0 +1,67 @@
+@import 'theme.scss';
+.sh-radio {
+  font-size: $p;
+  outline: none;
+  cursor: pointer;
+  &:hover, &:focus {
+    .sh-radio__inner {
+      border-color: $pricor;
+    }
+    .sh-radio__label {
+      color: $pricor;
+    }
+  }
+  &.sh-radio__disabled {
+    cursor: not-allowed;
+    .sh-radio__label {
+      color: $text-color-xlight !important;
+    }
+    .sh-radio__inner {
+      color: $text-color-xlight !important;
+      border-color: $text-color-xlight !important;
+      background: $border-color-light !important;
+    }
+  }
+  & + .sh-radio {
+    margin-left: 10px;
+  }
+  span {
+    vertical-align: middle;
+    color: $text-color-lighter;
+    transition: all .2s;
+  }
+  input {
+    display: none;
+    & + .sh-radio__inner {
+      height: 14px;
+      width: 14px;
+      border-radius: 14px;
+      background: $white;
+      color: $white;
+      border: 1px solid $border-color-light;
+      box-sizing: border-box;
+      display: inline-block;
+      position: relative;
+      margin-right: 5px;
+      .sh-icon-circle-fill {
+        font-size: 12px;
+        transform: scale(0);
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all .4s;
+      }
+    }
+    &:checked + .sh-radio__inner {
+      background: $pricor;
+      border-color: $pricor;
+      & + span {
+        color: $pricor;
+      }
+      .sh-icon-circle-fill {
+        transform: scale(.5);
+      }
+    }
+  }
+}
