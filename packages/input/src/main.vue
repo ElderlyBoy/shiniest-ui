@@ -51,7 +51,19 @@
     },
     data() {
       return {
-        autoResizeRows: 0
+        autoResizeRows: 2
+      }
+    },
+    created() {
+      this.autoResizeMax = 0;
+      this.autoResizeMin = 0;
+      if(getType(this.autoResize) === 'Object') {
+        this.autoResizeMax = this.autoResize.max;
+        this.autoResizeMin = this.autoResize.min;
+        this.autoResizeRows = this.autoResizeMin;
+      } else {
+        this.autoResizeMax = this.autoResize;
+        this.autoResizeMin = 2;
       }
     },
     props: {
@@ -64,32 +76,27 @@
       rows: { type: [Number, String], default: 0 },
       autoResize: {type: [Number, Object], default: null}
     },
-    mounted() {
-      if(this.autoResize) {
-        let autoResizeMax = 0;
-        let autoResizeMin = 0;
-        if(getType(this.autoResize) === 'Object') {
-          autoResizeMax = this.autoResize.max;
-          autoResizeMin = this.autoResize.min;
-          this.autoResizeRows = autoResizeMin;
-        } else {
-          autoResizeMax = this.autoResize;
-        }
-        const autoHeight = (target, discount) => {
-          if(target.scrollHeight > target.clientHeight && this.autoResizeRows <= autoResizeMax && !discount) {
-            this.autoResizeRows ++;
-            this.$nextTick(() => {
-              autoHeight(target)
-            })
-          } else if(autoResizeMin && this.autoResizeRows > autoResizeMin) {
-            this.autoResizeRows --;
-          } else {
-            return
+    watch: {
+      bindValue(val, oldVal){
+        if(this.autoResize) {
+          const autoHeight = (target, isAdd) => {
+            if(target.scrollHeight > target.clientHeight && this.autoResizeRows < this.autoResizeMax && isAdd) {
+              this.autoResizeRows ++;
+              this.$nextTick(() => {
+                autoHeight(target, isAdd)
+              })
+            } else if(this.autoResizeRows > this.autoResizeMin && !isAdd) {
+              this.autoResizeRows --;
+              console.log('this.autoResizeRows --', this.autoResizeRows)
+              this.$nextTick(() => {
+                if(target.scrollHeight > target.clientHeight) isAdd = !isAdd
+                autoHeight(target, isAdd)
+                target.scrollTop = 999999
+              })
+            }
           }
+          autoHeight(event.target, val.length > oldVal.length)
         }
-        this.$on('input', () => {
-          autoHeight(event.target)
-        })
       }
     },
     computed: {
