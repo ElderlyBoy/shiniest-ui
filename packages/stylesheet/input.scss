@@ -91,6 +91,7 @@
     color: $text-color-base;
     font-family: inherit;
     resize: none;
+    scrollbar-width: none;
     &::-webkit-scrollbar {
       display: none;
     }
