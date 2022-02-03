@@ -1,0 +1,140 @@
+@import 'theme.scss';
+.sh-input {
+  display: flex;
+  align-items: center;
+  background: $white;
+  &__prepend {
+    border: 1px solid $border-color-lighter;
+    padding: 0 10px;
+    background: $infcor-plain;
+    display: flex;
+    align-items: center;
+    font-size: $p;
+    color: $text-color-lighter;
+    height: 100%;
+    box-sizing: border-box;
+    border-right: none;
+    border-top-left-radius: $radius-md;
+    border-bottom-left-radius: $radius-md;
+    & + .sh-input__inner .sh-input__body, &.has-append {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  &__append {
+    border: 1px solid $border-color-lighter;
+    padding: 0 10px;
+    background: $infcor-plain;
+    display: flex;
+    align-items: center;
+    font-size: $p;
+    color: $text-color-lighter;
+    height: 100%;
+    box-sizing: border-box;
+    border-left: none;
+    border-top-right-radius: $radius-md;
+    border-bottom-right-radius: $radius-md;
+  }
+  &__inner {
+    position: relative;
+    flex-grow: 2;
+    &.has-append .sh-input__body {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    .sh-input__counter {
+      position: absolute;
+      font-size: $h6;
+      bottom: 7px;
+      right: 7px;
+      background: $white;
+      padding-left: 2px;
+      color: $text-color-lighter;
+      &.sh-input__counter-full {
+        color: $dancor;
+      }
+    }
+    .sh-icon-error {
+      position: absolute;
+      font-size: $h6;
+      right: 8px;
+      top: 50%;
+      margin-top: $h6/-2;
+      color: $text-color-xlight;
+      transition: all .2s;
+      background: $white;
+      opacity: 0;
+      border-radius: $h6;
+      cursor: pointer;
+      &:hover {
+        color: $warcor;
+      }
+    }
+    &:hover {
+      .sh-icon-error {
+        opacity: 1;
+      }
+    }
+  }
+  textarea.sh-input__body {
+    padding: 7px;
+  }
+  .sh-input__body {
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    outline: none;
+    border: 1px solid $border-color-lighter;
+    transition: border .2s;
+    border-radius: $radius-md;
+    font-size: $p;
+    color: $text-color-base;
+    font-family: inherit;
+    resize: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &:hover {
+      border-color: $border-color-base;
+    }
+    &:focus {
+      border-color: $pricor;
+    }
+  }
+  &.sh-input__mini {
+    height: $height-mini;
+    .sh-input__inner {
+      height: $height-mini;
+    }
+    .sh-input__body {
+      padding: 0 8px;
+    }
+  }
+  &.sh-input__small {
+    height: $height-small;
+    .sh-input__inner {
+      height: $height-small;
+    }
+    .sh-input__body {
+      padding: 0 10px;
+    }
+  }
+  &.sh-input__medium {
+    height: $height-medium;
+    .sh-input__inner {
+      height: $height-medium;
+    }
+    .sh-input__body {
+      padding: 0 12px;
+    }
+  }
+  &.sh-input__large {
+    height: $height-large;
+    .sh-input__inner {
+      height: $height-large;
+    }
+    .sh-input__body {
+      padding: 0 14px;
+    }
+  }
+}
