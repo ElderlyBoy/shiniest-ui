@@ -1,0 +1,27 @@
+.sh-none-scrollbar {
+  position: relative;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.sh-scrollbar {
+  position: absolute;
+  right: 2px;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: transparent;
+  .sh-scrollbar__thumb {
+    margin: 0;
+    background: rgba(144,147,153,.3);
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .3s;
+    &:hover {
+      background: rgba(144,147,153,.5);
+    }
+  }
+}

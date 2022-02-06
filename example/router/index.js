@@ -31,7 +31,8 @@ const routes = [{
     makeRouter('checkbox', '复选框'),
     makeRouter('radio', '单选框'),
     makeRouter('input', '文本框'),
-    makeRouter('switch', '开关')
+    makeRouter('switch', '开关'),
+    makeRouter('scrollbar', '滚动条')
   ]
 }]
 
