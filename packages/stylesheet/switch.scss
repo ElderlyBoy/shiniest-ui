@@ -1,0 +1,57 @@
+@import "theme.scss";
+.sh-switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  .inactive-text {
+    color: $pricor;
+  }
+  & > span {
+    font-size: $p;
+    color: $text-color-base;
+    transition: color .3s;
+    & + .sh-switch__inner {
+      margin-left: 10px;
+    }
+  }
+  &__active {
+    .active-text {
+      color: $pricor;
+    }
+    .inactive-text {
+      color: $text-color-base;
+    }
+    .sh-switch__inner {
+      background: $pricor;
+      .sh-icon-circle-fill {
+        left: 19px;
+      }
+    }
+  }
+  &__inner {
+    height: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    width: 38px;
+    cursor: pointer;
+    padding: 1px;
+    transition: all .3s;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    background: $infcor;
+    & + span {
+      margin-left: 10px;
+    }
+    .sh-icon-circle-fill {
+      color: #eee;
+      padding: 2px;
+      font-size: 16px;
+      transition: all .3s;
+      vertical-align: middle;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}

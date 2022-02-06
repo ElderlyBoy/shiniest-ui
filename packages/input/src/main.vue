@@ -87,7 +87,6 @@
               })
             } else if(this.autoResizeRows > this.autoResizeMin && !isAdd) {
               this.autoResizeRows --;
-              console.log('this.autoResizeRows --', this.autoResizeRows)
               this.$nextTick(() => {
                 if(target.scrollHeight > target.clientHeight) isAdd = !isAdd
                 autoHeight(target, isAdd)

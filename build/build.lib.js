@@ -56,7 +56,7 @@ module.exports = {
       test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
       loader: 'url-loader',
       options: {
-        limit: 1,
+        limit: 100000,
         name: 'static/[name].[ext]'
       }
     }]
