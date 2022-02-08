@@ -4,6 +4,8 @@
 
 Under Developing By [XingYu Xiao](https://www.shiniest.cn) with ❤
 
+Preview：[https://ui.shiniest.cn/](https://ui.shiniest.cn/)
+
 ## 初始化 (init)
 
 ~~~~bash
