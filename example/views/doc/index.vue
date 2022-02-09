@@ -1,12 +1,16 @@
 <template>
   <div class="doc-box">
-    <nav>
-      <h3>导航</h3>
-      <router-link v-for="(item,index) in navList" :to="{name: item.name}" :key="index">{{item.name}} {{item.label}}</router-link>
-    </nav>
-    <aside>
-      <router-view></router-view>
-    </aside>
+    <sh-scrollbar :default-show-thumb="false">
+      <nav>
+        <h3>导航</h3>
+        <router-link v-for="(item,index) in navList" :to="{name: item.name}" :key="index">{{item.name}} {{item.label}}</router-link>
+      </nav>
+    </sh-scrollbar>
+    <sh-scrollbar ref="scrollbar" class="aside" :default-show-thumb="false">
+      <aside>
+        <router-view></router-view>
+      </aside>
+    </sh-scrollbar>
   </div>
 </template>
 
@@ -22,6 +26,12 @@
         label: route.meta.title,
         name: route.name
       }))
+      this.$router.afterEach(() => {
+        this.$nextTick(() => {
+          this.$refs.scrollbar.getNewStyleY(false);
+          this.$refs.scrollbar.getNewStyleX(false);
+        })
+      })
     }
   }
 </script>
@@ -41,7 +51,6 @@
       border-right: 1px solid #eee;
       box-sizing: border-box;
       height: calc(100vh - 61px);
-      overflow-y: auto;
       a {
         display: block;
         padding: 10px;
@@ -58,10 +67,15 @@
         }
       }
     }
-    aside {
-      box-sizing: border-box;
-      padding: 10px;
+    .aside {
       width: calc(100% - 200px);
+      height: calc(100vh - 61px);
+      aside {
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+      }
     }
   }
 </style>
