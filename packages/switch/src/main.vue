@@ -3,7 +3,7 @@
     @click="change" 
     @keyup.space="change" 
     tabindex="0" 
-    :class="['sh-switch', {'sh-switch__active': activeValue === bindValue}]"
+    :class="['sh-switch', {'sh-switch__active': activeValue === bindValue, 'sh-switch__disabled': switchDisabled}]"
   >
     <span class="inactive-text" v-if="inactiveText">{{inactiveText}}</span>
     <div :style="computedStyle" class="sh-switch__inner">
@@ -21,6 +21,11 @@
       prop: 'bindValue',
       event: 'change'
     },
+    inject: {
+      shForm: { 
+        default: ''
+      }
+    },
     props: {
       bindValue: { type: [String, Boolean, Number], required: true },
       activeValue: { type: [String, Boolean, Number], default: true },
@@ -28,14 +33,19 @@
       activeColor: { type: String, default: '' },
       inactiveColor: { type: String, default: ''  },
       activeText: { type: String, default: '' },
-      inactiveText: { type: String, default: ''  }
+      inactiveText: { type: String, default: ''  },
+      disabled: { type: Boolean, default: false }
     },
     methods: {
       change(){
+        if(this.switchDisabled) return false;
         this.$emit('change', this.bindValue === this.activeValue?this.inactiveValue:this.activeValue)
       }
     },
     computed: {
+      switchDisabled(){
+        return this.disabled || (this.shForm || {}).disabled;
+      },
       computedStyle(){
         let styleTxt = ''
         if(this.activeColor) {

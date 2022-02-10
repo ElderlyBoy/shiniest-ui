@@ -33,7 +33,6 @@
     box-sizing: border-box;
     border-radius: 20px;
     width: 38px;
-    cursor: pointer;
     padding: 1px;
     transition: all .3s;
     position: relative;
@@ -53,5 +52,9 @@
       top: 0;
       left: 0;
     }
+  }
+  &__disabled {
+    cursor: not-allowed;
+    filter: opacity(.5);
   }
 }
