@@ -1,7 +1,7 @@
 .sh-scrollbar {
   position: relative;
   width: fit-content;
-  :first-child {
+  > :first-child {
     overflow: scroll;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
