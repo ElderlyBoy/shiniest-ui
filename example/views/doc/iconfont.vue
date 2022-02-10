@@ -20,16 +20,16 @@
 
 <style lang="scss">
   .iconfont {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
+    overflow: hidden;
     .icon {
-      height: 80px;
-      width: 100px;
+      float: left;
+      margin-right: 20px;
+      height: 120px;
+      width: 120px;
+      box-sizing: border-box;
       text-align: center;
       border: 1px solid #eee;
-      padding: 20px 10px;
+      padding: 20px;
       border-radius: 4px;
       margin-bottom: 20px;
       span {
