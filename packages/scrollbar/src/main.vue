@@ -38,8 +38,10 @@
       this.targetEl.addEventListener('scroll', this.scroll);
       if(this.resizeable) {
         this.sizeChangeTarget = new ResizeObserver(() => {
-          this.getNewStyleY(false)
-          this.getNewStyleX(false)
+          this.getTranslateY();
+          this.getTranslateX();
+          this.getNewStyleY(false);
+          this.getNewStyleX(false);
         })
         this.sizeChangeTarget.observe(this.targetEl);
       }
@@ -70,11 +72,6 @@
         this.getTranslateX();
         this.getNewStyleY(true);
         this.getNewStyleX(true);
-      },
-      //目标元素resize
-      resize(){
-        this.getTranslateY();
-        this.getNewStyleY(false);
       },
       //计算thumb样式
       getNewStyleY(onlyTransform){
