@@ -32,7 +32,8 @@ const routes = [{
     makeRouter('radio', '单选框'),
     makeRouter('input', '文本框'),
     makeRouter('switch', '开关'),
-    makeRouter('scrollbar', '滚动条')
+    makeRouter('scrollbar', '滚动条'),
+    makeRouter('popover', '弹出框')
   ]
 }]
 
