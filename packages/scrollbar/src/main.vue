@@ -1,12 +1,8 @@
 <template>
   <div :class="['sh-scrollbar', {'is-light': light}]">
     <slot></slot>
-    <div @mousedown="mousedown('y')" class="sh-scrollbar__thumb is-y" :style="computedStyleY">
-      <div></div>
-    </div>
-    <div @mousedown="mousedown('x')" class="sh-scrollbar__thumb is-x" :style="computedStyleX">
-      <div></div>
-    </div>
+    <div @mousedown="mousedown('y')" class="sh-scrollbar__thumb is-y" :style="computedStyleY"></div>
+    <div @mousedown="mousedown('x')" class="sh-scrollbar__thumb is-x" :style="computedStyleX"></div>
   </div>
 </template>
 
@@ -80,7 +76,7 @@
         } else {
           this.needScrollbarY = !(this.targetEl.clientHeight === this.targetEl.scrollHeight);
           this.computedStyleY = {
-            height: `${Math.pow(this.targetEl.clientHeight, 2)/this.targetEl.scrollHeight}px`,
+            height: `${Math.pow(this.targetEl.clientHeight, 2)/this.targetEl.scrollHeight - 4}px`,
             transform: `translateY(${this.translateY}px)`,
             opacity: this.defaultShowThumb?1:'',
             display: this.needScrollbarY?'':'none'
@@ -93,7 +89,7 @@
         } else {
           this.needScrollbarX = !(this.targetEl.clientWidth === this.targetEl.scrollWidth);
           this.computedStyleX = {
-            width: `${Math.pow(this.targetEl.clientWidth, 2)/this.targetEl.scrollWidth}px`,
+            width: `${Math.pow(this.targetEl.clientWidth, 2)/this.targetEl.scrollWidth - 4}px`,
             transform: `translateX(${this.translateX}px)`,
             opacity: this.defaultShowThumb?1:'',
             display: this.needScrollbarX?'':'none'

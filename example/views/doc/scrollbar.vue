@@ -40,7 +40,6 @@
       height: 500px;
       width: 400px;
       margin: 0;
-      margin-top: 10px;
     }
     div.scrollbar-x {
       margin-top: 10px;

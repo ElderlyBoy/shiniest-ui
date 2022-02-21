@@ -1,6 +1,7 @@
 .sh-scrollbar {
   position: relative;
   width: fit-content;
+  overflow: hidden;
   > :first-child {
     overflow: scroll;
     scrollbar-width: none;
@@ -15,32 +16,29 @@
     opacity: 0;
     position: absolute;
     box-sizing: border-box;
-    width: 11px;
-    height: 11px;
-    padding: 2px;
+    width: 7px;
+    height: 7px;
     cursor: pointer;
-    transition: opacity .3s;
+    border-radius: 7px;
+    transition: opacity .3s,background .3s;
+    background: #00000033;
+    will-change: transform;
+    -webkit-appearance: none;
+    -webkit-touch-callout: none;
+    &:hover {
+      background: #00000066;
+    }
     &.is-y {
-      right: 0;
-      top: 0;
+      right: 2px;
+      top: 2px;
     }
     &.is-x {
-      left: 0;
-      bottom: 0;
-    }
-    & > div {
-      border-radius: 7px;
-      transition: background .3s;
-      background: #00000033;
-      height: 100%;
-      width: 100%;
-      &:hover {
-        background: #00000066;
-      }
+      left: 2px;
+      bottom: 2px;
     }
   }
   &.is-light {
-    .sh-scrollbar__thumb > div {
+    .sh-scrollbar__thumb {
       background: #ffffffdd;
       &:hover {
         background: #ffffff;
