@@ -38,10 +38,10 @@
       }
     },
     mounted() {
-      window.addEventListener('click', this.click)
+      document.body.addEventListener('click', this.click)
     },
     beforeDestroy() {
-      window.removeEventListener('click', this.click)
+      document.body.removeEventListener('click', this.click)
     },
     methods: {
       reander(val){
