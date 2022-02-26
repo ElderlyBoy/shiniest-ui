@@ -25,7 +25,7 @@
       ></textarea>
       <i @click="$emit('input', '')" v-show="clearable && bindValue.length" class="sh-icon-error"></i>
       <span 
-        v-if="maxlength"
+        v-if="maxlength && showWordLimit"
         :class="['sh-input__counter', {'sh-input__counter-full': bindValue.length >= maxlength}]"
       >{{bindValue.length}}/{{maxlength}}</span>
     </div>
@@ -71,6 +71,7 @@
       placeholder: { type: String, default: '请输入' },
       size: { type: String, default: null, validator: val => componentSizesList.includes(val) },
       clearable: { type: Boolean, default: false },
+      showWordLimit: { type: Boolean, default: false },
       type: { type: String, default: 'text' },
       maxlength: { type: [Number, String], default: 0 },
       rows: { type: [Number, String], default: 0 },

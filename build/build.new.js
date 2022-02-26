@@ -18,6 +18,10 @@ const templateList = [{
     fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/index.js`), indexFileData, 'utf-8');
     console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/index.js 文件完成`);
     
+    const descFileData = fs.readFileSync(path.resolve(__dirname, '.desc.template'), 'utf-8')
+    fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/desc.js`), descFileData, 'utf-8');
+    console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/desc.js 文件完成`);
+    
     const mainFileData = `<template>\n  <div></div>\n</template>\n\n<script>\n  export default {\n    name: \'Sh${componentName}\'\n  }\n</script>`;
     fs.writeFileSync(path.resolve(__dirname, `../packages/${pkgName}/src/main.vue`), mainFileData, 'utf-8');
     console.log(`\x1B[32mSuccess\x1B[0m 创建 ${pkgName}/src/main.vue 文件完成`);
@@ -79,4 +83,3 @@ if(isExists) {
   target.process();
   console.log(`\x1B[32mCerating Type:\x1B[0m ${pkgType} (${target.label})\n\x1B[32mTarget Name:\x1B[0m ${pkgName}`)
 }
-

@@ -1,81 +1,70 @@
 <template>
-  <div class="doc-box">
-    <sh-scrollbar :default-show-thumb="false">
-      <nav>
-        <h3>导航</h3>
-        <router-link v-for="(item,index) in navList" :to="{name: item.name}" :key="index">{{item.name}} {{item.label}}</router-link>
-      </nav>
-    </sh-scrollbar>
-    <sh-scrollbar ref="scrollbar" class="aside" :default-show-thumb="false">
-      <aside>
-        <router-view></router-view>
-      </aside>
-    </sh-scrollbar>
-  </div>
+   <div class="doc-index">
+      <div class="left-box">
+         <sh-scrollbar>
+            <div class="area">
+               <nav>
+                  <router-link to="/doc/install">安装</router-link>
+               </nav>
+               <nav v-for="item in doclist" :key="item.group">
+                  <p>{{item.group}}</p>
+                  <router-link
+                     v-for="unit in item.list"
+                     :key="unit.name"
+                     :to="{name: 'DocDetail', params: {name: unit.name}}"
+                  >{{unit.upperName}} {{unit.chineseName}}</router-link>
+               </nav>
+            </div>
+         </sh-scrollbar>
+      </div>
+      <div class="right-box">
+         <router-view class="router-view"></router-view>
+      </div>
+   </div>
 </template>
 
 <script>
-  export default {
-    data(){
-      return {
-        navList: []
+   import doclist from './doclist.js';
+   export default {
+      data(){
+         return {
+            doclist
+         }
       }
-    },
-    created() {
-      this.navList = this.$router.options.routes[1].children.map(route => ({
-        label: route.meta.title,
-        name: route.name
-      }))
-      this.$router.afterEach(() => {
-        this.$nextTick(() => {
-          this.$refs.scrollbar.getNewStyleY(false);
-          this.$refs.scrollbar.getNewStyleX(false);
-        })
-      })
-    }
-  }
+   }
 </script>
 
 <style lang="scss">
-  .doc-box {
-    display: flex;
-    h1,h2,h3,h4,h5,h6 {
-      color: #2CAD66;
-      padding: 10px 0;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #eee;
-    }
-    nav {
-      padding: 10px;
-      width: 200px;
-      border-right: 1px solid #eee;
-      box-sizing: border-box;
-      height: calc(100vh - 61px);
-      a {
-        display: block;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-        color: #1AB7BC;
-        text-decoration: none;
-        font-size: 14px;
-        &:hover {
-          color: #2CAD66;
-        }
-        &.router-link-exact-active {
-          color: #2CAD66;
-          border-right: 4px solid #2CAD66;
-        }
+   .doc-index {
+      display: flex;
+      .left-box {
+         padding: 10px;
+         .area {
+            width: 200px;
+            height: calc(100vh - 81px);
+         }
+         p {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 10px;
+         }
+         a {
+            display: block;
+            padding: 10px;
+            transition: background .2s, color .2s;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            &.router-link-active {
+               color: #2CAD66;
+               background: mix(#2cad66, #ffffff, 15%);
+            }
+         }
       }
-    }
-    .aside {
-      width: calc(100% - 200px);
-      height: calc(100vh - 61px);
-      aside {
-        height: 100%;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
+      .right-box {
+         padding: 10px;
+         width: 100%;
+         box-sizing: border-box;
       }
-    }
-  }
+   }
 </style>

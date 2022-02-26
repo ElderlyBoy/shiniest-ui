@@ -30,19 +30,7 @@
       }
     },
     mounted(){
-      this.targetEl = this.$el.firstChild;
-      this.targetEl.addEventListener('scroll', this.scroll);
-      if(this.resizeable) {
-        this.sizeChangeTarget = new ResizeObserver(() => {
-          this.getTranslateY();
-          this.getTranslateX();
-          this.getNewStyleY(false);
-          this.getNewStyleX(false);
-        })
-        this.sizeChangeTarget.observe(this.targetEl);
-      }
-      this.getNewStyleY(false);
-      this.getNewStyleX(false);
+      this.init();
     },
     beforeDestroy() {
       this.targetEl.removeEventListener('scroll', this.scroll);
@@ -55,6 +43,21 @@
       }
     },
     methods: {
+       init(){
+          this.targetEl = this.$el.firstChild;
+          this.targetEl.addEventListener('scroll', this.scroll);
+          if(this.resizeable) {
+            this.sizeChangeTarget = new ResizeObserver(() => {
+              this.getTranslateY();
+              this.getTranslateX();
+              this.getNewStyleY(false);
+              this.getNewStyleX(false);
+            })
+            this.sizeChangeTarget.observe(this.targetEl);
+          }
+          this.getNewStyleY(false);
+          this.getNewStyleX(false);
+       },
       //计算thumb的移动距离
       getTranslateY(){
         return this.translateY = this.targetEl.scrollTop*this.targetEl.clientHeight/this.targetEl.scrollHeight;

@@ -3,44 +3,36 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-function makeRouter(name, title){
-  return {
-    meta: {
-      title
-    },
-    path: name,
-    name: name.replace(/\w/, val => val.toUpperCase()),
-    component: () => import(`../views/doc/${name}.vue`)
-  }
-}
-
 const routes = [{
-  path: '/',
-  name: 'Home',
-  component: () => import( /* webpackChunkName: "home" */ '../views/home.vue')
-},{
-  path:'/doc',
-  component: () => import( /* webpackChunkName: "home" */ '../views/doc/index.vue'),
-  redirect: '/doc/button',
-  children: [
-    makeRouter('button', '按钮'),
-    makeRouter('iconfont', '图标'),
-    makeRouter('notify', '通知'),
-    makeRouter('link', '链接'),
-    makeRouter('tag', '标签'),
-    makeRouter('checkbox', '复选框'),
-    makeRouter('radio', '单选框'),
-    makeRouter('input', '文本框'),
-    makeRouter('switch', '开关'),
-    makeRouter('scrollbar', '滚动条'),
-    makeRouter('popover', '弹出框')
-  ]
+   path: '/',
+   name: 'Home',
+   component: () => import( /* webpackChunkName: "home" */ '../views/home.vue')
+}, {
+   path: '/doc',
+   name: 'Doc',
+   component: () => import( /* webpackChunkName: "doc" */ '../views/doc/index.vue'),
+   children: [{
+      path: 'install',
+      name: 'DocInstall',
+      component: () => import( /* webpackChunkName: "doc" */ '../views/doc/alone/install.vue'),
+   }, {
+      path: ':name',
+      name: 'DocDetail',
+      component: () => import( /* webpackChunkName: "doc" */ '../views/doc/detail.vue'),
+   }]
+}, {
+   path: '/404',
+   name: '404',
+   component: () => import( /* webpackChunkName: "404" */ '../views/404.vue'),
+}, {
+   path: '*',
+   redirect: '/404'
 }]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+   mode: 'history',
+   base: process.env.BASE_URL,
+   routes
 })
 
 export default router

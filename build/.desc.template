@@ -1,0 +1,28 @@
+const desc = {
+   //是否单独书写动态示例
+   independent: false,
+   example: [{
+      title: '代码示例',
+      code: `
+<template>
+   
+</template>
+`
+   }],
+   props: [{
+      title: 'Attributes',
+      /* name desc type required default options ↓ */
+      list: []
+   }],
+   events: [{
+      title: 'Events',
+      /* name desc params note ↓ */
+      list: [],
+   }],
+   slots: [{
+      title: 'Slots',
+      /* name desc ↓ */
+      list: []
+   }]
+};
+export default desc;

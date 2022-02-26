@@ -1,0 +1,18 @@
+root = true
+[*]
+# 文件编码是 utf-8
+charset = utf-8
+# 空格缩进
+indent_style = space
+# 缩进空格为2个
+indent_size = 3
+# 文件换行符是 linux 的 `\n`
+end_of_line = lf
+# 文件末尾添加一个空行
+insert_final_newline = true
+# 不保留行末的空格
+trim_trailing_whitespace = true
+
+[*.md]
+insert_final_newline = false
+trim_trailing_whitespace = false
