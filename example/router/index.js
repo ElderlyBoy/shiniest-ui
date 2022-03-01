@@ -11,6 +11,7 @@ const routes = [{
    path: '/doc',
    name: 'Doc',
    component: () => import( /* webpackChunkName: "doc" */ '../views/doc/index.vue'),
+   redirect: '/doc/install',
    children: [{
       path: 'install',
       name: 'DocInstall',
