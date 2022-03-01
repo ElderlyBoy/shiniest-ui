@@ -1,6 +1,6 @@
 const desc = {
    example: [{
-      title: 'Basically useful',
+      title: 'Button 代码示例',
       code: `
 <template>
    <sh-button
@@ -13,7 +13,7 @@ const desc = {
 </template>`
    }],
    props: [{
-      title: 'Example Attributes',
+      title: 'Button Attributes',
       list: [{
          name: 'type',
          desc: '按钮类型',
@@ -42,10 +42,17 @@ const desc = {
          required: false,
          default: false,
          options: [true, false]
+      }, {
+         name: 'round',
+         desc: '是否为圆角',
+         type: 'Boolean',
+         required: false,
+         default: false,
+         options: [true, false]
       }]
    }],
    events: [{
-      title: 'Example Events',
+      title: 'Button Events',
       list: [{
          name: 'click',
          desc: '点击事件',
@@ -54,7 +61,7 @@ const desc = {
       }],
    }],
    slots: [{
-      title: 'Example Slots',
+      title: 'Button Slots',
       list: [{
          name: '--',
          desc: '默认插槽'
