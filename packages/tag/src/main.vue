@@ -15,7 +15,7 @@
     },
     props: {
       type: { type: String, default: 'primary' },
-      size: { type: String, default: '' }
+      size: { type: String, default: 'small' }
     },
     computed: {
       tagSize(){

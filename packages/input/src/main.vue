@@ -37,7 +37,7 @@
 
 <script>
   import '../../stylesheet/input.scss';
-  import { componentSizesList, getType } from '../../../src/utils.js';
+  import { componentSizesList, getType } from '../../../src/util/utils.js';
   export default {
     name: 'ShInput',
     model: {

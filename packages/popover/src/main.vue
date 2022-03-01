@@ -1,13 +1,13 @@
 <template>
-  <div 
+  <div
     class="sh-popover"
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
     @click.stop="click($event, false)"
   >
-    <slot name="reference"></slot>
+    <slot name="reference"><sh-button>REFERENCE</sh-button></slot>
     <transition name="sh-popover">
-      <div 
+      <div
         @click.stop="{}"
         :class="['sh-popover__inner', {'is-arrow': arrow}, `is-${placement}`]"
         v-if="firstShow || forceShow"
@@ -28,7 +28,7 @@
       arrow: { type: Boolean, default: true },
       forceShow: { type: Boolean, default: false },
       placement: { type: String, default: 'bottom', validator: val => ['top', 'right', 'bottom', 'left'].includes(val) }
-      
+
     },
     data(){
       return {

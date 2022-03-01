@@ -5,9 +5,10 @@
   .sh-popover__inner {
     border-radius: $radius-md;
     position: absolute;
-    border: 1px solid $border-color-lighter;
+    border: 1px solid $border-color-light;
     box-sizing: border-box;
     padding: 10px;
+    background: $white;
     &.is-arrow::before {
       content: '';
       height: 7px;
@@ -24,8 +25,8 @@
       margin-top: 10px;
       &.is-arrow::before {
         transform: rotate(45deg);
-        border-left: 1px solid $border-color-lighter;
-        border-top: 1px solid $border-color-lighter;
+        border-left: 1px solid $border-color-light;
+        border-top: 1px solid $border-color-light;
         top: -4px;
         left: 50%;
         margin-left: -4px;
@@ -36,8 +37,8 @@
       right: -10px;
       transform: translateX(100%);
       &.is-arrow::before {
-        border-left: 1px solid $border-color-lighter;
-        border-bottom: 1px solid $border-color-lighter;
+        border-left: 1px solid $border-color-light;
+        border-bottom: 1px solid $border-color-light;
         top: 10px;
         left: 0;
         margin-left: -4px;
@@ -50,8 +51,8 @@
       margin-top: -10px;
       &.is-arrow::before {
         transform: rotate(45deg);
-        border-right: 1px solid $border-color-lighter;
-        border-bottom: 1px solid $border-color-lighter;
+        border-right: 1px solid $border-color-light;
+        border-bottom: 1px solid $border-color-light;
         bottom: -4px;
         left: 50%;
         margin-left: -4px;
@@ -62,8 +63,8 @@
       left: -10px;
       transform: translateX(-100%);
       &.is-arrow::before {
-        border-right: 1px solid $border-color-lighter;
-        border-top: 1px solid $border-color-lighter;
+        border-right: 1px solid $border-color-light;
+        border-top: 1px solid $border-color-light;
         top: 10px;
         right: -4px;
       }
