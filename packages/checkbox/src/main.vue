@@ -17,7 +17,7 @@
     name: 'ShCheckbox',
     model: {
       event: 'change',
-      prop: 'isChecked'
+      prop: 'bindValue'
     },
     inject: {
       shForm: {
@@ -28,8 +28,8 @@
       }
     },
     props: {
+      bindValue: { type: Array, default: () => ([]) },
       label: { type: String, default: '' },
-      isChecked: { type: Boolean },
       disabled: { type: Boolean, default: false },
       checked: { type: Boolean, default: null },
       value: { type: [String, Number, Boolean], default: null },
@@ -40,17 +40,18 @@
         return this.disabled || (this.shCheckboxGroup || {}).disabled || this.shForm.disabled
       },
       isCheckboxChecked(){
-        return this.shCheckboxGroup?this.shCheckboxGroup.bindValue.includes(this.value):this.isChecked
+        return this.shCheckboxGroup?this.shCheckboxGroup.bindValue.includes(this.value):this.bindValue.includes(this.value)
       }
     },
     created() {
-      if(this.checked !== null) this.$emit('change', this.checked)
+      if(this.checked === true) this.$emit('change', [...this.bindValue.map(i => i), this.value])
     },
     methods: {
       change(val){
-        this.$emit('change', val)
         if(this.shCheckboxGroup){
           this.shCheckboxGroup.checkboxChange(this.value, val)
+        } else {
+           this.$emit('change', val?[...this.bindValue.map(i => i), this.value]:this.bindValue.filter(i => i !== this.value))
         }
       }
     }
