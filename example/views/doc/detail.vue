@@ -1,5 +1,5 @@
 <template>
-   <sh-scrollbar ref="scrollbar" style="width: 100%;">
+   <sh-scrollbar ref="scrollbar">
       <div class="doc-detail">
          <section class="preview">
             <template v-if="desc.independent">
@@ -11,13 +11,17 @@
             </template>
          </section>
          <section class="code">
-            <pre v-for="(code, codeIndex) in desc.example" :key="codeIndex">
+            <div v-for="code in desc.example" :key="code.title">
                <h2>{{code.title}}</h2>
-               <code>{{code.code}}</code>
-            </pre>
+               <sh-scrollbar light>
+                  <pre>
+                     <code>{{code.code}}</code>
+                  </pre>
+               </sh-scrollbar>
+            </div>
          </section>
          <section class="attrs">
-            <div v-for="(prop, propIndex) in desc.props" :key="propIndex">
+            <div v-for="prop in desc.props" :key="prop.title">
                <h2>{{prop.title}}</h2>
                <table>
                   <thead>
@@ -31,8 +35,13 @@
                      </tr>
                   </thead>
                   <tbody>
+                     <tr v-if="prop.list.length===0">
+                        <td colspan="6">
+                           <center>这里啥也没有</center>
+                        </td>
+                     </tr>
                      <tr v-for="(row, rowIndex) in prop.list" :key="rowIndex">
-                        <td>{{row.name}}</td>
+                        <td>{{row.name==='bindValue'?'v-model / bindValue':row.name}}</td>
                         <td>{{row.desc}}</td>
                         <td>{{row.type}}</td>
                         <td>{{row.required?'是':'否'}}</td>
@@ -56,6 +65,11 @@
                      </tr>
                   </thead>
                   <tbody>
+                     <tr v-if="event.list.length===0">
+                        <td colspan="6">
+                           <center>这里啥也没有</center>
+                        </td>
+                     </tr>
                      <tr v-for="(row, rowIndex) in event.list" :key="rowIndex">
                         <td>{{row.name}}</td>
                         <td>{{row.desc}}</td>
@@ -77,6 +91,11 @@
                      </tr>
                   </thead>
                   <tbody>
+                     <tr v-if="slot.list.length===0">
+                        <td colspan="6">
+                           <center>这里啥也没有</center>
+                        </td>
+                     </tr>
                      <tr v-for="(row, rowIndex) in slot.list" :key="rowIndex">
                         <td>{{row.name}}</td>
                         <td>{{row.desc}}</td>
@@ -144,7 +163,7 @@
                   const customalExample = import(/* webpackChunkName: "desc" */ `./independent/${cName}.vue`);
                   customalExample.then(example => {
                      this.customalExample = example.default;
-                     this.$refs.scrollbar.init()
+                     this.done();
                   }).catch(() => {
                      this.$router.push({name: '404'});
                   })
@@ -162,7 +181,7 @@
                            return h('div', {
                               class: 'example-item'
                            }, [
-                              h('h2', cName + ' 动态示例'),
+                              h('h2', cName.replace(/\w/, val => val.toUpperCase()) + ' 动态示例'),
                               ...filterPropList.map(unit => {
                                  return h('sh-radio-group', {
                                     props: {
@@ -181,7 +200,12 @@
                                        }
                                     }
                                  }, [
-                                    h('span', `${unit.name}: `),
+                                    h('span', {
+                                       class: 'option-label',
+                                       domProps: {
+                                          title: unit.name
+                                       }
+                                    }, `${unit.name}: `),
                                     ...unit.options.map(option => h('sh-radio', {
                                        props: {
                                           value: option,
@@ -194,7 +218,7 @@
                         ))
                      }
                   }
-                  this.$refs.scrollbar.init()
+                  this.done();
                }
             }).catch(() => {
                this.$router.push({name: '404'});
@@ -221,33 +245,123 @@
                   }, cName)
                }
             }
+         },
+         //初始化完成
+         done(){
+            this.$nextTick(() => {
+               this.$refs.scrollbar.init();
+               let codeEl = this.$el.querySelectorAll('pre code');
+               //代码高亮
+               codeEl.forEach(block => {
+                  let html = block.innerHTML;
+                  /* html*/
+                  //属性名高亮
+                  html = html.replace(/\n?\s?[\w-]+=/g, val => `<span class="attr-name">${val.substr(0,val.length-1)}</span>=`)
+                  //属性值高亮
+                  html = html.replace(/("|')\w+("|')/g, val => `<span class="attr-value">${val}</span>`)
+                  //标签高亮
+                  html = html.replace(/&lt;\/?[\w-]+/g, val => `<span class="mark">${val}</span>`)
+                  html = html.replace(/&gt;/g, val => `<span class="mark">${val}</span>`)
+                  /* javascript*/
+                  //方法
+                  html = html.replace(/.?\w+\(/g, val => `<span class="func">${val.substr(0,val.length-1)}</span>(`)
+                  //关键字
+                  html = html.replace(/(const|let|var)/g, val => `<span class="key">${val}</span>`)
+                  html = html.replace(/(this|export|default|return|for|if|else|switch|case|break|while|\?|===|==|&&)/g, val => `<span class="key-imp">${val}</span>`)
+                  //对象key
+                  html = html.replace(/\w+:/g, val => `<span class="obj-key">${val.substr(0,val.length-1)}</span>:`)
+                  block.innerHTML = html
+               })
+            })
          }
       }
    }
 </script>
 
 <style lang="scss">
+   @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
    .doc-detail {
       height: calc(100vh - 81px);
       width: 100%;
+      h2 {
+         color: #2CAD66;
+         margin: 20px 0;
+      }
+      section{
+         width: 100%;
+      }
+      section.code > div {
+         width: 80%;
+      }
+      .example-item {
+         background: #eee;
+         padding: 15px;
+         margin-bottom: 20px;
+         border-radius: 10px;
+         width: 80%;
+         box-sizing: border-box;
+         .sh-radio-group {
+            padding: 5px 0;
+         }
+         h2 {
+            margin-top: 0;
+         }
+         .option-label {
+            font-size: 14px;
+            display: inline-block;
+            width: 100px;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+         }
+      }
       pre {
          font-family: inherit;
+         margin: 0;
+         background: #272822;
+         border-radius: 10px;
+         box-sizing: border-box;
+         padding: 0 20px;
+         max-height: 300px;
          code {
-            font-family: "lucida sans typewriter";
+            font-family: 'Source Code Pro', monospace;
+            color: #fff;
+            font-size: 14px;
+            .mark,.sig,.key-imp {
+               color: #f92672;
+            }
+            .attr-value,.obj-key {
+               color: #e6db74;
+            }
+            .attr-name, .func {
+               color: #a6e22e;
+            }
+            .key {
+               color: #66d9ef;
+            }
          }
       }
       table {
          border-spacing: 0;
          background: #000;
          width: 100%;
-         th {
-            white-space: nowrap;
-         }
+         box-sizing: border-box;
+         font-size: 14px;
+         margin: 10px 0;
          th,td {
             background: #fff;
             padding: 5px 10px;
             border-bottom: 1px solid #ddd;
             text-align: left;
+            color: #666;
+         }
+         th {
+            white-space: nowrap;
+            color: #333;
+         }
+         td:nth-of-type(1){
+            white-space: nowrap;
          }
       }
    }

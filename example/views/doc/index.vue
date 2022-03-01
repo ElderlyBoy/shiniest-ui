@@ -39,6 +39,7 @@
       display: flex;
       .left-box {
          padding: 10px;
+         width: 200px;
          .area {
             width: 200px;
             height: calc(100vh - 81px);
@@ -46,7 +47,7 @@
          p {
             color: #999;
             font-size: 12px;
-            margin-bottom: 10px;
+            margin: 10px 0;
          }
          a {
             display: block;
@@ -63,7 +64,7 @@
       }
       .right-box {
          padding: 10px;
-         width: 100%;
+         width: calc(100% - 220px);
          box-sizing: border-box;
       }
    }
