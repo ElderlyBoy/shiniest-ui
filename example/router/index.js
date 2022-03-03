@@ -17,6 +17,10 @@ const routes = [{
       name: 'DocInstall',
       component: () => import( /* webpackChunkName: "doc" */ '../views/doc/alone/install.vue'),
    }, {
+      path: 'iconfont',
+      name: 'DocIconfont',
+      component: () => import( /* webpackChunkName: "doc" */ '../views/doc/alone/iconfont.vue'),
+   }, {
       path: ':name',
       name: 'DocDetail',
       component: () => import( /* webpackChunkName: "doc" */ '../views/doc/detail.vue'),

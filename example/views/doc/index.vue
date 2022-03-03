@@ -5,6 +5,7 @@
             <div class="area">
                <nav>
                   <router-link to="/doc/install">安装</router-link>
+                  <router-link to="/doc/iconfont">Iconfont</router-link>
                </nav>
                <nav v-for="item in doclist" :key="item.group">
                   <p>{{item.group}}</p>
