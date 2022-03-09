@@ -27,8 +27,8 @@
       timeToClose: { type: Number, default: 200 },
       arrow: { type: Boolean, default: true },
       forceShow: { type: Boolean, default: false },
-      placement: { type: String, default: 'bottom', validator: val => ['top', 'right', 'bottom', 'left'].includes(val) }
-
+      placement: { type: String, default: 'bottom', validator: val => ['top', 'right', 'bottom', 'left'].includes(val) },
+      disabled: { type: Boolean, default: false }
     },
     data(){
       return {
@@ -44,30 +44,35 @@
       document.body.removeEventListener('click', this.click)
     },
     methods: {
-      reander(val){
+      reander(val, force){
         if(!this.firstShow) this.firstShow = val!==undefined?val:true;
         let isShow = val!==undefined?val:!this.isShow;
-        if(!isShow) {
+        if(!isShow && force !== true) {
           this.timmer = setTimeout(() => {
             this.isShow = isShow
+            this.$emit('change', isShow)
           }, this.timeToClose)
         } else {
           this.isShow = isShow
+          this.$emit('change', isShow)
         }
       },
       mouseenter(){
+        if(this.disabled) return;
         if(this.trigger !== 'hover') return;
         if(this.timmer) clearTimeout(this.timmer);
         this.reander(true)
       },
       mouseleave(){
+        if(this.disabled) return;
         if(this.trigger !== 'hover') return;
         this.reander(false)
       },
       click(e, fromWindow=true){
+        if(this.disabled) return;
         if(this.trigger !== 'click') return;
         if(fromWindow && this.isShow === false) return
-        this.reander()
+        this.reander(undefined, true)
       },
     }
   }

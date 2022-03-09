@@ -43,6 +43,13 @@ const desc = {
          default: false,
          options: [true, false]
       }, {
+         name: 'disabled',
+         desc: '禁用',
+         type: 'Boolean',
+         required: false,
+         default: false,
+         options: [true, false]
+      }, {
          name: 'placement',
          desc: '打开位置',
          type: 'String',
@@ -54,7 +61,12 @@ const desc = {
    events: [{
       title: 'Popover Events',
       /* name desc params note ↓ */
-      list: [],
+      list: [{
+         name: 'change',
+         desc: '当popover显示状态改变时触发',
+         params: 'Boolean: 显示状态',
+         note: '--'
+      }],
    }],
    slots: [{
       title: 'Popover Slots',
