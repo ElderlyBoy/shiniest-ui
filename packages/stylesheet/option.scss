@@ -1,0 +1,29 @@
+@import 'theme.scss';
+.sh-option {
+   list-style: none;
+   padding: 5px 10px;
+   font-size: $h5;
+   color: $text-color-base;
+   position: relative;
+   cursor: pointer;
+   &:hover {
+      background: #eee;
+   }
+   &.is-active {
+      color: $pricor;
+      font-weight: $fwb;
+   }
+   &.is-disabled {
+      cursor: not-allowed;
+      color: $text-color-xlight;
+   }
+   > .sh-icon-success {
+      color: $pricor;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      font-weight: $fwl;
+      font-size: $h6;
+      margin-top: -$h6/2;
+   }
+}

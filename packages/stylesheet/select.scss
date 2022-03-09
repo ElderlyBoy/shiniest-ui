@@ -1,0 +1,102 @@
+@import 'theme.scss';
+.sh-select {
+   position: relative;
+   .sh-popover .sh-popover__inner.is-bottom {
+      width: 100%;
+      z-index: 3000;
+      padding: 10px 0;
+      .sh-select-option {
+         margin: 0;
+         max-height: 150px;
+         box-sizing: border-box;
+         padding: 0;
+      }
+   }
+   .sh-icon-arrow-down, .sh-icon-error {
+      position: absolute;
+      right: 8px;
+      top: 0;
+      font-weight: $fwb;
+      font-size: $h6;
+      top: 50%;
+      color: $border-color-base;
+      transition: all .2s;
+      margin-top: -$h6/2;
+   }
+   .sh-icon-error {
+      display: none;
+      z-index: 2;
+      background: $white;
+      cursor: pointer;
+   }
+   .sh-popover:hover .sh-icon-error {
+      display: block;
+      &:hover {
+         color: $dancor;
+      }
+   }
+   .sh-select__inner {
+      width: 100%;
+      border: 1px solid $border-color-lighter;
+      outline: none;
+      border-radius: $radius-md;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: border .2s;
+      color: $text-color-light;
+   }
+   &.is-mini {
+      .sh-select__inner {
+         height: $height-mini;
+         padding: 0 8px;
+      }
+   }
+   &.is-small {
+      .sh-select__inner {
+         height: $height-small;
+         padding: 0 10px;
+      }
+   }
+   &.is-medium {
+      .sh-select__inner {
+         height: $height-medium;
+         padding: 0 12px;
+      }
+   }
+   &.is-large {
+      .sh-select__inner {
+         height: $height-large;
+         padding: 0 14px;
+      }
+   }
+   .sh-select__inner:hover {
+      border-color: $border-color-base;
+   }
+   &.is-open {
+      .sh-icon-arrow-down {
+         color: $pricor;
+         transform: rotate(180deg);
+      }
+      .sh-select__inner {
+         border-color: $pricor;
+      }
+   }
+   &.is-disabled {
+      cursor: not-allowed;
+      .sh-select__inner {
+         opacity: .9;
+      }
+      & * {
+         pointer-events: none;
+      }
+   }
+   .sh-select-option {
+      .no-data {
+         font-size: $p;
+         color: $text-color-lighter;
+      }
+      .sh-option + .no-data, .no-data + .no-data {
+         display: none;
+      }
+   }
+}

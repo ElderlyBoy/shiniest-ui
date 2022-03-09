@@ -3,12 +3,12 @@ const doclist = [{
    list: ['button 按钮', 'link 链接']
 }, {
    group: 'Form',
-   list: ['radio 单选框', 'checkbox 多选框', 'input 输入框', 'switch 开关']
+   list: ['radio 单选框', 'checkbox 多选框', 'input 输入框', 'switch 开关', 'select 下拉选择框']
 }, {
    group: 'Data',
    list: ['tag 标签']
 }, {
-   group: 'Notice',  
+   group: 'Notice',
    list: ['notify 通知']
 }, {
    group: 'Navigation',
