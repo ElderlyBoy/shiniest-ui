@@ -19,7 +19,7 @@
     },
     computed: {
       tagSize(){
-        return this.size || this.$SHINIEST.size || this.shForm.size
+        return this.size || this.shForm.size || this.$SHINIEST.size
       }
     }
   }
